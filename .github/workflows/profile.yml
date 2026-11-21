@@ -1,0 +1,135 @@
+# =====================================================================
+#  WORKFLOW TẠO ẢNH CHO PROFILE README
+#  Đặt file này ở:  .github/workflows/profile.yml
+#  (trong repo có tên TRÙNG với username GitHub của bạn)
+#
+#  - Không cần token/secret: dùng GITHUB_TOKEN có sẵn của GitHub Actions.
+#  - Mỗi 6 tiếng nó tự tạo lại các ảnh .svg trong thư mục profile/
+#    rồi commit vào repo. README chỉ việc trỏ tới ./profile/*.svg
+#    nên không phụ thuộc server bên thứ ba nào (hết lo ảnh bị vỡ).
+#  - Muốn chạy ngay: tab Actions > "Update profile cards" > Run workflow.
+# =====================================================================
+name: Update profile cards
+
+on:
+  schedule:
+    - cron: "0 */6 * * *"                 # mỗi 6 tiếng (giờ UTC)
+  workflow_dispatch:                       # nút "Run workflow" bấm tay
+  push:
+    paths:
+      - ".github/workflows/profile.yml"    # sửa file này là tự chạy lại
+
+permissions:
+  contents: write                          # cho phép commit ảnh vào repo
+
+concurrency:
+  group: update-profile
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v6
+
+      - name: Create output folder
+        run: mkdir -p profile
+
+      # ---------------------------------------------------------------
+      # 1) THẺ THỐNG KÊ GITHUB (bản sáng + bản tối)
+      #    - Đổi giao diện: sửa theme=... (vd: radical, tokyonight, dracula)
+      #    - Muốn chữ tiếng Việt: thêm &locale=vi vào cuối dòng options
+      #    - continue-on-error: 1 thẻ lỗi thì các thẻ khác vẫn cập nhật
+      # ---------------------------------------------------------------
+      - name: Stats card (light)
+        continue-on-error: true
+        uses: stats-organization/github-readme-stats-action@v2
+        with:
+          card: stats
+          options: username=${{ github.repository_owner }}&show_icons=true&hide_border=true&theme=default
+          path: profile/stats-light.svg
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Stats card (dark)
+        continue-on-error: true
+        uses: stats-organization/github-readme-stats-action@v2
+        with:
+          card: stats
+          options: username=${{ github.repository_owner }}&show_icons=true&hide_border=true&theme=dark
+          path: profile/stats-dark.svg
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      # ---------------------------------------------------------------
+      # 2) THẺ NGÔN NGỮ LẬP TRÌNH DÙNG NHIỀU NHẤT (sáng + tối)
+      # ---------------------------------------------------------------
+      - name: Top languages card (light)
+        continue-on-error: true
+        uses: stats-organization/github-readme-stats-action@v2
+        with:
+          card: top-langs
+          options: username=${{ github.repository_owner }}&layout=compact&langs_count=6&hide_border=true&theme=default
+          path: profile/top-langs-light.svg
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Top languages card (dark)
+        continue-on-error: true
+        uses: stats-organization/github-readme-stats-action@v2
+        with:
+          card: top-langs
+          options: username=${{ github.repository_owner }}&layout=compact&langs_count=6&hide_border=true&theme=dark
+          path: profile/top-langs-dark.svg
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      # ---------------------------------------------------------------
+      # 3) THẺ STREAK (chuỗi ngày đóng góp liên tục) (sáng + tối)
+      #    - timezone: múi giờ Việt Nam để "ngày hiện tại" tính đúng.
+      #      Ở nước khác thì đổi, vd: America/New_York
+      #    - Muốn nhãn tiếng Việt: thêm &locale=vi
+      # ---------------------------------------------------------------
+      - name: Streak card (light)
+        continue-on-error: true
+        uses: DenverCoder1/github-readme-streak-stats@v1
+        with:
+          options: user=${{ github.repository_owner }}&theme=default&hide_border=true&timezone=Asia/Ho_Chi_Minh&disable_animations=true
+          path: profile/streak-light.svg
+
+      - name: Streak card (dark)
+        continue-on-error: true
+        uses: DenverCoder1/github-readme-streak-stats@v1
+        with:
+          options: user=${{ github.repository_owner }}&theme=dark&hide_border=true&timezone=Asia/Ho_Chi_Minh&disable_animations=true
+          path: profile/streak-dark.svg
+
+      # ---------------------------------------------------------------
+      # 4) CON RẮN ĂN CONTRIBUTION (sáng + tối)
+      #    Đổi màu rắn: thêm ?color_snake=orange vào cuối tên file
+      # ---------------------------------------------------------------
+      - name: Snake animation
+        continue-on-error: true
+        uses: Platane/snk/svg-only@v3
+        with:
+          github_user_name: ${{ github.repository_owner }}
+          outputs: |
+            profile/snake-light.svg
+            profile/snake-dark.svg?palette=github-dark
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # ---------------------------------------------------------------
+      # 5) COMMIT ẢNH MỚI VÀO REPO (chỉ commit khi có thay đổi)
+      # ---------------------------------------------------------------
+      - name: Commit changes (if any)
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add profile/
+          if git diff --cached --quiet; then
+            echo "Không có gì thay đổi."
+            exit 0
+          fi
+          git commit -m "chore: update profile cards"
+          git pull --rebase
+          git push
