@@ -1,26 +1,30 @@
 # =====================================================================
-#  WORKFLOW TẠO ẢNH CHO PROFILE README
-#  Đặt file này ở:  .github/workflows/profile.yml
-#  (trong repo có tên TRÙNG với username GitHub của bạn)
+#  WORKFLOW TẠO ẢNH CHO PROFILE README  -  bản game x hoá học (v2)
+#  Đặt ở:  .github/workflows/profile.yml  (repo tên TRÙNG username)
 #
 #  - Không cần token/secret: dùng GITHUB_TOKEN có sẵn của GitHub Actions.
 #  - Mỗi 6 tiếng nó tự tạo lại các ảnh .svg trong thư mục profile/
-#    rồi commit vào repo. README chỉ việc trỏ tới ./profile/*.svg
-#    nên không phụ thuộc server bên thứ ba nào (hết lo ảnh bị vỡ).
-#  - Muốn chạy ngay: tab Actions > "Update profile cards" > Run workflow.
+#    rồi commit vào repo. README chỉ trỏ tới ./profile/*.svg nên
+#    không phụ thuộc server bên thứ ba nào (hết lo ảnh bị vỡ).
+#  - Chạy ngay: tab Actions > "Update profile cards" > Run workflow.
+#
+#  Đổi màu: các mã màu (không có dấu #) ở các thẻ bên dưới, vd 00e5ff
+#  là cyan, 39ff14 là xanh neon, ff3cac là hồng. Sửa xong commit là
+#  workflow tự chạy lại.
 # =====================================================================
 name: Update profile cards
 
 on:
   schedule:
-    - cron: "0 */6 * * *"                 # mỗi 6 tiếng (giờ UTC)
-  workflow_dispatch:                       # nút "Run workflow" bấm tay
+    - cron: "0 */6 * * *"                  # mỗi 6 tiếng (giờ UTC)
+  workflow_dispatch:                        # nút "Run workflow" bấm tay
   push:
     paths:
-      - ".github/workflows/profile.yml"    # sửa file này là tự chạy lại
+      - ".github/workflows/profile.yml"     # sửa file này là tự chạy lại
+      - "scripts/make_assets.py"            # sửa script vẽ ảnh cũng vậy
 
 permissions:
-  contents: write                          # cho phép commit ảnh vào repo
+  contents: write                           # cho phép commit ảnh vào repo
 
 concurrency:
   group: update-profile
@@ -39,73 +43,47 @@ jobs:
         run: mkdir -p profile
 
       # ---------------------------------------------------------------
-      # 1) THẺ THỐNG KÊ GITHUB (bản sáng + bản tối)
-      #    - Đổi giao diện: sửa theme=... (vd: radical, tokyonight, dracula)
-      #    - Muốn chữ tiếng Việt: thêm &locale=vi vào cuối dòng options
-      #    - continue-on-error: 1 thẻ lỗi thì các thẻ khác vẫn cập nhật
+      # 1) THẺ "PLAYER STATS" (thống kê GitHub của bạn)
+      #    continue-on-error: 1 thẻ lỗi thì các thẻ khác vẫn cập nhật
       # ---------------------------------------------------------------
-      - name: Stats card (light)
+      - name: Stats card
         continue-on-error: true
         uses: stats-organization/github-readme-stats-action@v2
         with:
           card: stats
-          options: username=${{ github.repository_owner }}&show_icons=true&hide_border=true&theme=default
-          path: profile/stats-light.svg
-          token: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Stats card (dark)
-        continue-on-error: true
-        uses: stats-organization/github-readme-stats-action@v2
-        with:
-          card: stats
-          options: username=${{ github.repository_owner }}&show_icons=true&hide_border=true&theme=dark
-          path: profile/stats-dark.svg
+          options: username=${{ github.repository_owner }}&show_icons=true&custom_title=PLAYER_STATS&bg_color=0b1020&border_color=2a3560&title_color=00e5ff&text_color=c9d1d9&icon_color=39ff14&ring_color=ff3cac&border_radius=14
+          path: profile/stats.svg
           token: ${{ secrets.GITHUB_TOKEN }}
 
       # ---------------------------------------------------------------
-      # 2) THẺ NGÔN NGỮ LẬP TRÌNH DÙNG NHIỀU NHẤT (sáng + tối)
+      # 2) THẺ "LANGS_UNLOCKED" (ngôn ngữ lập trình bạn dùng nhiều nhất)
       # ---------------------------------------------------------------
-      - name: Top languages card (light)
+      - name: Top languages card
         continue-on-error: true
         uses: stats-organization/github-readme-stats-action@v2
         with:
           card: top-langs
-          options: username=${{ github.repository_owner }}&layout=compact&langs_count=6&hide_border=true&theme=default
-          path: profile/top-langs-light.svg
-          token: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Top languages card (dark)
-        continue-on-error: true
-        uses: stats-organization/github-readme-stats-action@v2
-        with:
-          card: top-langs
-          options: username=${{ github.repository_owner }}&layout=compact&langs_count=6&hide_border=true&theme=dark
-          path: profile/top-langs-dark.svg
+          options: username=${{ github.repository_owner }}&layout=compact&langs_count=6&custom_title=LANGS_UNLOCKED&bg_color=0b1020&border_color=2a3560&title_color=00e5ff&text_color=c9d1d9&border_radius=14
+          path: profile/top-langs.svg
           token: ${{ secrets.GITHUB_TOKEN }}
 
       # ---------------------------------------------------------------
-      # 3) THẺ STREAK (chuỗi ngày đóng góp liên tục) (sáng + tối)
+      # 3) THẺ STREAK (chuỗi ngày đóng góp liên tục)
       #    - timezone: múi giờ Việt Nam để "ngày hiện tại" tính đúng.
       #      Ở nước khác thì đổi, vd: America/New_York
-      #    - Muốn nhãn tiếng Việt: thêm &locale=vi
+      #    - Muốn nhãn tiếng Việt: thêm &locale=vi vào cuối dòng options
       # ---------------------------------------------------------------
-      - name: Streak card (light)
+      - name: Streak card
         continue-on-error: true
         uses: DenverCoder1/github-readme-streak-stats@v1
         with:
-          options: user=${{ github.repository_owner }}&theme=default&hide_border=true&timezone=Asia/Ho_Chi_Minh&disable_animations=true
-          path: profile/streak-light.svg
-
-      - name: Streak card (dark)
-        continue-on-error: true
-        uses: DenverCoder1/github-readme-streak-stats@v1
-        with:
-          options: user=${{ github.repository_owner }}&theme=dark&hide_border=true&timezone=Asia/Ho_Chi_Minh&disable_animations=true
-          path: profile/streak-dark.svg
+          options: user=${{ github.repository_owner }}&background=0b1020&border=2a3560&stroke=2a3560&ring=ff3cac&fire=ff9f1c&currStreakNum=00e5ff&sideNums=c9d1d9&currStreakLabel=ff3cac&sideLabels=8b95b8&dates=8b95b8&border_radius=14&timezone=Asia/Ho_Chi_Minh&disable_animations=true
+          path: profile/streak.svg
 
       # ---------------------------------------------------------------
-      # 4) CON RẮN ĂN CONTRIBUTION (sáng + tối)
-      #    Đổi màu rắn: thêm ?color_snake=orange vào cuối tên file
+      # 4) CON RẮN ĂN CONTRIBUTION (hồng neon ăn các ô màu ngọc lam)
+      #    color_snake = màu rắn | color_dots = 5 màu ô, từ "0 contribution"
+      #    đến "nhiều nhất". File raw sẽ được script bên dưới thêm nền tối.
       # ---------------------------------------------------------------
       - name: Snake animation
         continue-on-error: true
@@ -113,23 +91,35 @@ jobs:
         with:
           github_user_name: ${{ github.repository_owner }}
           outputs: |
-            profile/snake-light.svg
-            profile/snake-dark.svg?palette=github-dark
+            profile/snake-raw.svg?color_snake=#ff3cac&color_dots=#141b34,#0e4d4a,#0f8f86,#19c7b5,#5ff5e0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       # ---------------------------------------------------------------
-      # 5) COMMIT ẢNH MỚI VÀO REPO (chỉ commit khi có thay đổi)
+      # 5) VẼ BANNER, THẺ NHÂN VẬT, CÂY KỸ NĂNG... (script Python có sẵn
+      #    trong repo: scripts/make_assets.py) + thêm nền tối cho con rắn
+      # ---------------------------------------------------------------
+      - name: Draw game-style assets
+        env:
+          PROFILE_USER: ${{ github.repository_owner }}
+          PYTHONIOENCODING: utf-8
+        run: python3 scripts/make_assets.py
+
+      # ---------------------------------------------------------------
+      # 6) COMMIT ẢNH MỚI VÀO REPO (chỉ commit khi có thay đổi)
+      #    Cũng dọn luôn các ảnh -light/-dark của bản cũ (v1) nếu còn.
       # ---------------------------------------------------------------
       - name: Commit changes (if any)
+        if: ${{ !cancelled() }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add profile/
+          rm -f profile/*-light.svg profile/*-dark.svg profile/snake-raw.svg
+          git add -A profile/
           if git diff --cached --quiet; then
             echo "Không có gì thay đổi."
             exit 0
           fi
-          git commit -m "chore: update profile cards"
+          git commit -m "chore: update profile assets"
           git pull --rebase
           git push
