@@ -42,7 +42,7 @@ FONT = "'SF Mono','Menlo','Consolas','DejaVu Sans Mono','Courier New',monospace"
 # ======================================================================
 CONFIG = {
     # Tên hiển thị trên banner / thẻ nhân vật. Để "" = dùng username GitHub.
-    "name": "NguyenLeMaiAnh",
+    "name": "",
     # Ký hiệu "nguyên tố" trên thẻ nhân vật (1-2 chữ). Để "" = 2 chữ cái đầu của tên.
     "symbol": "Ma",
     # Dòng chữ nhỏ dưới banner (viết thường, gõ thoải mái).
