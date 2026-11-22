@@ -16,7 +16,7 @@
 
 <!-- 1. BANNER (tự vẽ, có hiệu ứng động) -->
 <p align="center">
-  <img src="./profile/banner.svg" alt="nglemaianh - Chemistry x Chemical Engineering x Code" width="100%" />
+  <img src="./profile/banner.svg" alt="Nguyen Le Mai Anh - Chemistry x Chemical Engineering x Code" width="100%" />
 </p>
 
 <!-- 2. LIÊN HỆ (shields.io). Xoá dòng nào bạn không dùng. -->
