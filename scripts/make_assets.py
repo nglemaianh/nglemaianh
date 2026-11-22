@@ -87,7 +87,7 @@ SKILLS_CODE = [
 SKILLS_SCIENCE = [
     ("Gc", "Gen Chem", "learning", GREEN, 0.60),
     ("Ls", "Lab Safety", "unlocked", GREEN, 1.0),
-    ("Oc", "Organic", "locked", GREEN, 0),
+    ("Oc", "Organic", "learning", GREEN, 0),
     ("Td", "Thermo", "locked", GREEN, 0),
     ("Re", "Reactor Eng", "locked", PINK, 0),
     ("Pd", "Proc Design", "locked", PINK, 0),
