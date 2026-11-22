@@ -85,7 +85,6 @@
 | Level | What it is | Tech |
 | --- | --- | --- |
 | [nglemaianh.github.io](https://github.com/nglemaianh/nglemaianh.github.io) | My personal website | `HTML` |
-| 🔒 *Level 2* | Molar mass calculator *(coming soon)* | `Python` |
 
 <!-- 9. FOOTER -->
 <p align="center">
