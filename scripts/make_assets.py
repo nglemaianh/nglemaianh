@@ -62,10 +62,10 @@ CONFIG = {
     ],
     # Chỉ số kiểu game: (tên, điểm 0-10, màu). Tự chấm cho vui nhé!
     "attributes": [
-        ("CHEMISTRY", 8, GREEN),
-        ("CODING", 4, CYAN),
-        ("MATH", 6, PURPLE),
-        ("LAB SKILLS", 5, ORANGE),
+        ("CHEMISTRY", 9, GREEN),
+        ("CODING", 6, CYAN),
+        ("MATH", 8, PURPLE),
+        ("LAB SKILLS", 9, ORANGE),
         ("CURIOSITY", 10, PINK),
     ],
     "attributes_note": "(self-rated, for fun)",
@@ -80,7 +80,7 @@ SKILLS_CODE = [
     ("Js", "JavaScript", "learning", CYAN, 0.35),
     ("Gt", "Git", "unlocked", PURPLE, 1.0),
     ("Gh", "GitHub", "unlocked", PURPLE, 1.0),
-    ("Py", "Python", "locked", ORANGE, 0),
+    ("Py", "Python", "unlocked", ORANGE, 0),
     ("Ml", "MATLAB", "locked", ORANGE, 0),
     ("Lx", "LaTeX", "locked", ORANGE, 0),
 ]
