@@ -1,102 +1,99 @@
 <!--
-  ==================================================================
-  PROFILE README - BẢN MẪU
-  ==================================================================
-  CÁCH DÙNG NHANH
-  1) Bấm Ctrl+F, tìm chữ "YOUR_" và thay bằng thông tin thật của bạn:
-       YOUR_NAME, YOUR_USERNAME, YOUR_EMAIL, YOUR_LINKEDIN,
-       YOUR_FACEBOOK, YOUR_TELEGRAM, YOUR_PROJECT, YOUR_TOPIC ...
-  2) Các ảnh ./profile/*.svg do workflow tự tạo (file
-     .github/workflows/profile.yml). Trước lần chạy đầu tiên chúng sẽ
-     hiện ảnh vỡ - đó là bình thường.
-  3) Khối chú thích này không hiển thị ra ngoài, xoá hay giữ đều được.
-  ==================================================================
+  ====================================================================
+  PROFILE README v2  -  CHEMISTRY x GAME
+  ====================================================================
+  Các ảnh trong ./profile/ do GitHub Actions tự tạo (xem
+  .github/workflows/profile.yml và scripts/make_assets.py).
+
+  CẦN SỬA:
+    1) Ctrl+F (Mac: Cmd+F) tìm "YOUR_" và thay bằng thông tin thật
+       (email, Facebook, Telegram). Dòng nào không dùng thì xoá luôn.
+    2) Đổi tên / chỉ số / kỹ năng trên các thẻ game: sửa phần CẤU HÌNH
+       ở đầu file scripts/make_assets.py rồi commit.
+    3) Khối chú thích này không hiển thị ra ngoài, xoá hay giữ đều được.
+  ====================================================================
 -->
 
-<!-- 1. BANNER (capsule-render). Tự thiết kế kiểu khác tại https://capsule-render.vercel.app
-     Tên có dấu cách thì viết %20, ví dụ: An%20Nguyen -->
+<!-- 1. BANNER (tự vẽ, có hiệu ứng động) -->
 <p align="center">
-  <img width="100%" alt="Profile banner" src="https://capsule-render.vercel.app/api?type=waving&color=0:0f2027,50:203a43,100:2c5364&height=220&section=header&text=AnhNguyen&fontSize=56&fontColor=ffffff&animation=fadeIn&fontAlignY=38&desc=Developer%20-%20Learner%20-%20Builder&descSize=18&descAlignY=58" />
+  <img src="./profile/banner.svg" alt="nglemaianh - Chemistry x Chemical Engineering x Code" width="100%" />
 </p>
 
-<!-- 2. DÒNG CHỮ TỰ GÕ (readme-typing-svg).
-     Gõ chữ của bạn trực tiếp tại https://readme-typing-svg.demolab.com/demo/
-     rồi copy link nó tạo ra (nó tự mã hoá tiếng Việt có dấu giúp bạn).
-     Các dòng ngăn cách nhau bằng dấu ; và dấu cách viết là + -->
+<!-- 2. LIÊN HỆ (shields.io). Xoá dòng nào bạn không dùng. -->
 <p align="center">
-  <img alt="Typing SVG" src="https://readme-typing-svg.demolab.com/?font=Fira+Code&weight=600&size=22&duration=3500&pause=1200&color=3B82F6&center=true&vCenter=true&width=640&height=50&lines=Hi+there!+I'm+YOUR_NAME;I+turn+ideas+into+code;Always+learning%2C+always+building" />
+  <a href="https://nglemaianh.github.io"><img alt="Website" src="https://img.shields.io/badge/WEBSITE-nglemaianh.github.io-00e5ff?style=for-the-badge&labelColor=0b1020" /></a>
+  <a href="mailto:nguyenleemaianh@gmail.com"><img alt="Email" src="https://img.shields.io/badge/EMAIL-say%20hi-ff3cac?style=for-the-badge&logo=gmail&logoColor=white&labelColor=0b1020" /></a>
 </p>
 
-<!-- 3. LIÊN HỆ (shields.io).
-     LinkedIn không có logo vì Simple Icons đã gỡ logo này, nên để badge chữ.
-     Xoá dòng nào bạn không dùng. -->
+<!-- 3. GIỚI THIỆU NGẮN: viết lại bằng giọng của bạn (tiếng Việt cũng được) -->
 <p align="center">
-  <a href="mailto:nglemaianh@gmail.com"><img alt="Email" src="https://img.shields.io/badge/Email-EA4335?style=for-the-badge&logo=gmail&logoColor=white" /></a>
-  <a href="https://www.linkedin.com/in/YOUR_LINKEDIN"><img alt="LinkedIn" src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge" /></a>
-<br />
+  <b>Hi, I'm Nguyen Le Mai Anh</b> 👋<br />
+  An aspiring <b>chemistry &amp; chemical engineering</b> student who loves mixing molecules with code.<br />
+  Currently building <a href="https://nglemaianh.github.io">my website</a> and levelling up one commit at a time 🧪
+</p>
 
-## 👋 About me
-
-- 🔭 Currently working on **YOUR_PROJECT**
-- 🌱 Currently learning **YOUR_TOPIC**
-- 💬 Ask me about **YOUR_SKILL**
-- 🎯 Looking for **internships / collaborations / open-source projects**
-- ⚡ Fun fact: **YOUR_FUN_FACT**
-
-<!-- 4. KỸ NĂNG (skillicons.dev).
-     Đổi danh sách sau i= (cách nhau bằng dấu phẩy). Tra mã icon tại
-     https://github.com/tandpfun/skill-icons#icons-list
-     perline = số icon trên mỗi hàng. -->
-## 🛠️ Tech stack
-
-<img alt="Tech stack" src="https://skillicons.dev/icons?i=html,css,js,ts,react,nodejs,py,git,github,vscode&perline=10" />
-
-<!-- 5. THỐNG KÊ GITHUB - ảnh do workflow tạo trong ./profile/
-     Mỗi ảnh có bản sáng + tối, GitHub tự chọn theo giao diện người xem. -->
-## 📊 GitHub stats
-
+<!-- 4. THẺ NHÂN VẬT + CÂY KỸ NĂNG (tự vẽ, chỉnh trong scripts/make_assets.py) -->
 <p align="center">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="./profile/stats-dark.svg">
-    <img alt="GitHub stats" src="./profile/stats-light.svg" height="165">
-  </picture>
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="./profile/top-langs-dark.svg">
-    <img alt="Most used languages" src="./profile/top-langs-light.svg" height="165">
-  </picture>
+  <img src="./profile/player-card.svg" alt="Character sheet: class, major, attributes" width="100%" />
 </p>
 
 <p align="center">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="./profile/streak-dark.svg">
-    <img alt="GitHub streak" src="./profile/streak-light.svg">
-  </picture>
+  <img src="./profile/skills.svg" alt="Skill tree: periodic table of skills" width="100%" />
 </p>
 
-<!-- 6. CON RẮN ĂN CONTRIBUTION (Platane/snk) - ảnh do workflow tạo -->
-## 🐍 Contribution snake
+<!-- 5. THỐNG KÊ GITHUB (GitHub Actions tạo, cập nhật mỗi 6 tiếng) -->
+<p align="center">
+  <img src="./profile/h-stats.svg" alt="Live stats" width="100%" />
+</p>
 
 <p align="center">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="./profile/snake-dark.svg">
-    <img alt="Contribution snake" src="./profile/snake-light.svg" width="100%">
-  </picture>
+  <img src="./profile/stats.svg" alt="GitHub stats" height="170" />
+  <img src="./profile/top-langs.svg" alt="Most used languages" height="170" />
 </p>
 
-<!-- 7. DỰ ÁN NỔI BẬT. Chưa có dự án thì xoá cả mục này (từ dòng ## đến hết bảng). -->
-## 🚀 Featured projects
+<p align="center">
+  <img src="./profile/streak.svg" alt="GitHub contribution streak" />
+</p>
 
-| Project | What it does | Tech |
+<!-- 6. CON RẮN ĂN CONTRIBUTION (Platane/snk, thêm nền tối bằng script) -->
+<p align="center">
+  <img src="./profile/h-snake.svg" alt="Snake.exe" width="100%" />
+</p>
+
+<p align="center">
+  <img src="./profile/snake.svg" alt="Snake eating my contribution graph" width="100%" />
+</p>
+
+<!-- 7. QUEST LOG: tick [x] khi xong một nhiệm vụ, thêm dòng mới tuỳ thích -->
+<p align="center">
+  <img src="./profile/h-quests.svg" alt="Quest log" width="100%" />
+</p>
+
+- [x] 🎮 Create my GitHub profile - *Level 1 unlocked!*
+- [x] 🌐 Launch my personal website
+- [ ] 🐍 Learn Python basics for chemistry (data, plots, simulations)
+- [ ] ⚗️ Build a molar mass calculator
+- [ ] 📈 Plot a titration curve with Python
+- [ ] 🧪 Publish my chemistry study notes
+- [ ] 🏭 Try a process simulator (Aspen Plus or the free DWSIM)
+
+<!-- 8. DỰ ÁN NỔI BẬT: thêm dự án mới thì thêm 1 dòng vào bảng -->
+<p align="center">
+  <img src="./profile/h-levels.svg" alt="Featured levels" width="100%" />
+</p>
+
+| Level | What it is | Tech |
 | --- | --- | --- |
-| [project-one](https://nglemaianh.github.io) | Personal Portfolio | `JavaScript` `HTML5` |
+| [nglemaianh.github.io](https://github.com/nglemaianh/nglemaianh.github.io) | My personal website | `HTML` |
+| 🔒 *Level 2* | Molar mass calculator *(coming soon)* | `Python` |
 
-<br />
-
-<!-- 8. ĐẾM LƯỢT XEM PROFILE (komarev.com) + FOOTER -->
+<!-- 9. FOOTER -->
 <p align="center">
-  <img alt="Profile views" src="https://komarev.com/ghpvc/?username=nglemaianh&label=Profile+views&color=3B82F6&style=flat" />
+  <img src="./profile/divider.svg" alt="" width="100%" />
 </p>
 
-<p align="center"><i>Thanks for stopping by! ⭐ A star on my repos always makes my day.</i></p>
+<p align="center">
+  <img alt="Players visited" src="https://komarev.com/ghpvc/?username=nglemaianh&label=PLAYERS+VISITED&color=00e5ff&style=for-the-badge" />
+</p>
 
-<img width="100%" alt="Footer" src="https://capsule-render.vercel.app/api?type=waving&color=0:0f2027,50:203a43,100:2c5364&height=120&section=footer" />
+<p align="center"><sub>Thanks for stopping by! Star a repo of mine to give me +10 XP ⭐</sub></p>
