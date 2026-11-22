@@ -42,16 +42,16 @@ FONT = "'SF Mono','Menlo','Consolas','DejaVu Sans Mono','Courier New',monospace"
 # ======================================================================
 CONFIG = {
     # Tên hiển thị trên banner / thẻ nhân vật. Để "" = dùng username GitHub.
-    "name": "",
+    "name": "Nguyen Le Mai Anh",
     # Ký hiệu "nguyên tố" trên thẻ nhân vật (1-2 chữ). Để "" = 2 chữ cái đầu của tên.
-    "symbol": "",
+    "symbol": "Anh",
     # Dòng chữ nhỏ dưới banner (viết thường, gõ thoải mái).
     "tagline": "Turning curiosity into reactions, and reactions into code.",
     # Dòng "gõ chữ" trên banner. Chữ pixel chỉ có A-Z, 0-9 và vài ký hiệu
     # (. , - : ! + > < / _ = ( ) ' ? & * %). Tiếng Việt có dấu sẽ tự bỏ dấu.
     "subtitle": "CHEMISTRY + CHEMICAL ENGINEERING",
     "rank": "NEWBIE ALCHEMIST",   # danh hiệu dưới thanh XP
-    "level": 1,                   # cấp độ
+    "level": 2,                   # cấp độ
     "xp": 0.30,                   # thanh XP, từ 0.0 đến 1.0
     # Các dòng thông tin trên thẻ nhân vật (tối đa 4 dòng)
     "info": [
